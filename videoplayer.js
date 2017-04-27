@@ -6,6 +6,10 @@ var seasonCode = season <= 9 ? "0" + season : season;
 var path = "../" + show + "/Season%20" + season + "/";
 var playlist;
 
+document.getElementById("light").onclick = function () {
+        document.getElementsByTagName("body")[0].classList.toggle ("nightmode")
+}
+
 document.getElementById ("show").onclick = function () {
     document.getElementById ("selector").innerHTML = ""
     loadJSON ("../shows.json",

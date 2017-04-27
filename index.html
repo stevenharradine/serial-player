@@ -1,20 +1,39 @@
-<!doctype html>                                                                                                                                                                                                                  
-<html>                                                                                                                                                                                                                           
-        <head>                                                                                                                                                                                                                   
-                <title>TV Show Player</title>                                                                                                                                                                                    
-                <style>                                                                                                                                                                                                          
-                        .container {                                                                                                                                                                                             
-                                width: 770px;                                                                                                                                                                                    
-                                margin: 0 auto;                                                                                                                                                                                  
-                        }                                                                                                                                                                                                        
-                        header h1 {                                                                                                                                                                                              
-                                margin: 0;                                                                                                                                                                                       
-                                padding: .5em 0;                                                                                                                                                                                 
-                        }                                                                                                                                                                                                        
-                        header img {                                                                                                                                                                                             
-                                width: 100%;                                                                                                                                                                                     
-                                display: block;                                                                                                                                                                                  
-                        }                                                                                                                                                                                                        
+<!doctype html>
+<html>
+        <head>
+                <title>TV Show Player</title>
+                <style>
+                        body {
+                                margin: 0;
+                        }
+                        .nightmode {
+                                background: black;
+                                color: white;
+                        }
+                        .nightmode header {
+                                display: none;
+                        }
+                        #light {
+                                cursor: pointer;
+                        }
+                        #light, .nightmode #light:hover {
+                                font-weight: bold;
+                        }
+                        #light:hover, .nightmode #light {
+                                font-weight: normal;
+                        }
+                        .container {
+                                width: 770px;
+                                margin: 0 auto;
+                        }
+                        header h1 {
+                                margin: 0;
+                                padding: .5em 0;
+                        }
+                        header img {
+                                width: 100%;
+                                display: block;
+                        }
                         video {
                                 width: 100%;
                         }
@@ -28,11 +47,10 @@
                                 padding: 5px 5px 10px 5px;
                                 border-radius: 10px 10px 0 0;
                         }
-                        #videoSize {
+                        .info-row {
                                 float: right;
                         }
                         #firstAired {
-                                float: right;
                                 margin-right: 10px;
                                 margin-top: .1em;
                         }
@@ -84,9 +102,12 @@
                         </header>
                         <div id="player">
                         </div>
-                        <select id="videoSize">
-                        </select>
-                        <span id="firstAired"></span>
+                        <div class="info-row">
+                                <span id="light">&#128161</span>
+                                <span id="firstAired"></span>
+                                <select id="videoSize">
+                                </select>
+                        </div>
                         <div id="selector-container">
                                 <h1><span id="show">Show</span> <span id="season">Season</span> <span id="episode">Episode</span></h1>
                                 <div id="selector"></div>
