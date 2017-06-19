@@ -3,7 +3,7 @@ show=$1
 videoFormat=$2
 episodesFilename=episodes.json
 
-fileextention=mkv
+fileextention=avi
 
 cd "$show"
 ls | grep Season | while read season; do

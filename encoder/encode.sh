@@ -7,7 +7,7 @@ title="$show/$season/$episode"
 threads=`cat encode-threads.dat`
 webPath=""
 
-if [[ $videoformat -eq "fullscreen" ]]; then
+if [[ "$videoformat" -eq "fullscreen" ]]; then
 	quality_x[0]=160
 	quality_x[1]=320
 	quality_x[2]=640
@@ -15,7 +15,7 @@ if [[ $videoformat -eq "fullscreen" ]]; then
 	quality_y[0]=120
 	quality_y[1]=240
 	quality_y[2]=480
-else if [[ $videoformat -eq "widescreen" ]]; then
+elif [[ "$videoformat" -eq "widescreen" ]]; then
 	quality_x[0]=320
 	quality_x[1]=480
 	quality_x[2]=1280
