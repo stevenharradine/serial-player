@@ -217,7 +217,7 @@ function init_video(autoplay, currentTime) {
         var newSize = newSizeEl.options[newSizeEl.selectedIndex].getAttribute("value");
 
         var newSource = document.createElement ("source");
-        newSource.src = path + episode + "." + newSize + ".mp4";
+        newSource.src = path + newSize + "/" + episode + "." + newSize + ".mp4";
         newSource.type = "video/mp4";
 
         var newVideo = document.createElement ("video");
