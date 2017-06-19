@@ -1,5 +1,6 @@
 #!/bin/bash
 show=$1
+videoFormat=$2
 episodesFilename=episodes.json
 
 fileextention=mkv
@@ -34,7 +35,7 @@ ls | grep Season | while read season; do
         ls *.$fileextention | while read episode; do
                 echo "${episode:0:-4}"
                 cd ../../
-                bash encode.sh "$show" "$season" "${episode:0:-4}" "$fileextention"
+                bash encode.sh "$show" "$season" "${episode:0:-4}" "$fileextention" "$videoFormat"
                 cd "$show"/"$season"
         done
         cd ..

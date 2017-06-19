@@ -2,26 +2,28 @@ show="$1"
 season="$2"
 episode="$3"
 fileextention="$4"
+videoformat="$4"
 title="$show/$season/$episode"
 threads=`cat encode-threads.dat`
 webPath=""
 
-#quality_x[0]=160
-#quality_x[1]=320
-#quality_x[2]=640
+if [[ $videoformat -eq "fullscreen" ]]; then
+	quality_x[0]=160
+	quality_x[1]=320
+	quality_x[2]=640
 
-#quality_y[0]=120
-#quality_y[1]=240
-#quality_y[2]=480
+	quality_y[0]=120
+	quality_y[1]=240
+	quality_y[2]=480
+else if [[ $videoformat -eq "widescreen" ]]; then
+	quality_x[0]=320
+	quality_x[1]=480
+	quality_x[2]=1280
 
-quality_x[0]=320
-quality_x[1]=480
-quality_x[2]=1280
-
-quality_y[0]=180
-quality_y[1]=360
-quality_y[2]=720
-
+	quality_y[0]=180
+	quality_y[1]=360
+	quality_y[2]=720
+fi
 # download
 #wget -O tmp.$fileextention "$webPath$title.$fileextention"
 #wget -O $title.tbn "$webPath$title.tbn"
@@ -50,9 +52,9 @@ for((i=0;i<${#quality_x[@]};i++))
 do
         echo "Convert watchable "${quality_y[$i]}"p"
         threads=`cat encode-threads.dat`
-        avconv -i tmp.mp4 -threads $threads -s ${quality_x[$i]}x${quality_y[$i]} -c:a copy "$title.${quality_y[$i]}p.mp4"
-        md5sum "$title.${quality_y[$i]}p.mp4" > "$title.${quality_y[$i]}p.md5"
-        sha1sum "$title.${quality_y[$i]}p.mp4" > "$title.${quality_y[$i]}p.sha1"
+        avconv -i tmp.mp4 -threads $threads -s ${quality_x[$i]}x${quality_y[$i]} -c:a copy "${quality_y[$i]}p/$title.${quality_y[$i]}p.mp4"
+        md5sum "${quality_y[$i]}p/$title.${quality_y[$i]}p.mp4" > "${quality_y[$i]}p/$title.${quality_y[$i]}p.md5"
+        sha1sum "${quality_y[$i]}p/$title.${quality_y[$i]}p.mp4" > "${quality_y[$i]}p/$title.${quality_y[$i]}p.sha1"
 done
 
 # clean up
