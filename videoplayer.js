@@ -51,7 +51,18 @@ document.getElementById ("episode").onclick = function () {
                 if (document.getElementById ("selector-container").getAttribute ("data-selected") != "episode") {
                     document.getElementById ("selector-container").setAttribute ("data-selected", "episode")
                     for (i = 0; i < episodes.length; i++) {
-                        document.getElementById ("selector").innerHTML += "<div onclick='play_item (\"" + episodes[i] + "\")'><img src=\"../" + show + "/Season%20" + season + "/" + episodes[i] + ".tbn\" /><span>" + episodes[i] + "</span></div>"
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.open("GET", path + "metadata/" + episodes[i] + ".xml", false);
+                        xhttp.send();
+                        if (xhttp.status === 200) {
+                            var xmlDoc = xhttp.responseXML;
+                            var episodeName = xmlDoc.getElementsByTagName("EpisodeName")[0].innerHTML;
+                            var seasonNumber = xmlDoc.getElementsByTagName("SeasonNumber")[0].innerHTML;
+                            var episodeNumber = xmlDoc.getElementsByTagName("EpisodeNumber")[0].innerHTML;
+                            var filename = xmlDoc.getElementsByTagName("filename")[0].innerHTML;
+
+                            document.getElementById ("selector").innerHTML += "<div onclick='play_item (\"" + episodes[i] + "\")'><img src=\"../" + show + "/Season%20" + season + "/metadata" + filename + "\" />" + seasonNumber + "." + episodeNumber + " " + episodeName + "</div>"
+                        }
                     }
                 } else {
                     document.getElementById ("selector-container").setAttribute ("data-selected", "")
