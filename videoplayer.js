@@ -57,11 +57,10 @@ document.getElementById ("episode").onclick = function () {
                         if (xhttp.status === 200) {
                             var xmlDoc = xhttp.responseXML;
                             var episodeName = xmlDoc.getElementsByTagName("EpisodeName")[0].innerHTML;
-                            var seasonNumber = xmlDoc.getElementsByTagName("SeasonNumber")[0].innerHTML;
                             var episodeNumber = xmlDoc.getElementsByTagName("EpisodeNumber")[0].innerHTML;
                             var filename = xmlDoc.getElementsByTagName("filename")[0].innerHTML;
 
-                            document.getElementById ("selector").innerHTML += "<div onclick='play_item (\"" + episodes[i] + "\")'><img src=\"../" + show + "/Season%20" + season + "/metadata" + filename + "\" />" + seasonNumber + "." + episodeNumber + " " + episodeName + "</div>"
+                            document.getElementById ("selector").innerHTML += "<div onclick='play_item (\"" + episodes[i] + "\")'><img src=\"../" + show + "/Season%20" + season + "/metadata" + filename + "\" />" + episodeNumber + ". " + episodeName + "</div>"
                         }
                     }
                 } else {
