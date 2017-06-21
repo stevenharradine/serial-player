@@ -232,7 +232,17 @@ function init_video(autoplay, currentTime) {
 
         var newVideo = document.createElement ("video");
         newVideo.setAttribute ("controls", "controls");
-        newVideo.setAttribute ("poster", path + episode + ".tbn");
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", path + "metadata/" + episode + ".xml", false);
+        xhttp.send();
+        if (xhttp.status === 200) {
+            var xmlDoc = xhttp.responseXML;
+            var filename = xmlDoc.getElementsByTagName("filename")[0].innerHTML;
+
+            newVideo.setAttribute ("poster", "../" + show + "/Season%20" + season + "/metadata" + filename);
+        }
+
         newVideo.volume = parseFloat (document.getElementsByTagName("body")[0].getAttribute("data-volume"));
         newVideo.currentTime = currentTime;
         if (autoplay) newVideo.setAttribute ("autoplay", "autoplay");
