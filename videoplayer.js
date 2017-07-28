@@ -56,11 +56,15 @@ document.getElementById ("episode").onclick = function () {
                         xhttp.send();
                         if (xhttp.status === 200) {
                             var xmlDoc = xhttp.responseXML;
+try {
                             var episodeName = xmlDoc.getElementsByTagName("EpisodeName")[0].innerHTML;
                             var episodeNumber = xmlDoc.getElementsByTagName("EpisodeNumber")[0].innerHTML;
                             var filename = xmlDoc.getElementsByTagName("filename")[0].innerHTML;
 
                             document.getElementById ("selector").innerHTML += "<div onclick='play_item (\"" + episodes[i] + "\")'><img src=\"../" + show + "/Season%20" + season + "/metadata" + filename + "\" />" + episodeNumber + ". " + episodeName + "</div>"
+} catch (err) {
+  document.getElementById ("selector").innerHTML += "<div onclick='play_item (\"" + episodes[i] + "\")' title=\"" + episodes[i] + "\">" + episodes[i] + "</div>"
+}
                         }
                     }
                 } else {
@@ -238,9 +242,11 @@ function init_video(autoplay, currentTime) {
         xhttp.send();
         if (xhttp.status === 200) {
             var xmlDoc = xhttp.responseXML;
+try {
             var filename = xmlDoc.getElementsByTagName("filename")[0].innerHTML;
-
             newVideo.setAttribute ("poster", "../" + show + "/Season%20" + season + "/metadata" + filename);
+} catch (err) {
+}
         }
 
         newVideo.volume = parseFloat (document.getElementsByTagName("body")[0].getAttribute("data-volume"));
