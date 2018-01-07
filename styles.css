@@ -31,6 +31,7 @@ header img {
 }
 video {
         width: 100%;
+        cursor: none;
 }
 h1 {
         font-size: 1em;
