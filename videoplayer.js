@@ -1,3 +1,5 @@
+var CACHE_BREAKER = (new Date()).getTime()
+
 var bodyEl = document.getElementsByTagName("body")[0];
 
 var show = getParameterByName ("show");
@@ -12,7 +14,7 @@ document.getElementById("light").onclick = function () {
 
 document.getElementById ("show").onclick = function () {
     document.getElementById ("selector").innerHTML = ""
-    loadJSON ("../shows.json",
+    loadJSON ("../shows.json" + CACHE_BREAKER,
          function(shows) {
             if (document.getElementById ("selector-container").getAttribute ("data-selected") != "show") {
                 document.getElementById ("selector-container").setAttribute ("data-selected", "show")
